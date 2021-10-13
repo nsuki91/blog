@@ -1,0 +1,90 @@
+body {
+    background-color: rgb(109, 187, 197);
+  }
+
+@font-face {
+    font-family: headline;
+    src: url(../fonts/Ubuntu-Bold.ttf);
+}
+
+@font-face {
+    font-family: ntext;
+    src: url(../fonts/Ubuntu-Regular.ttf);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  width: 20%;
+  background-color: #ffffff;
+  height: 95%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  border-radius: 5px;
+  background-color: #1d46b9;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  border-radius: 5px;
+  background-color: rgb(141, 198, 241);
+  color: white;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-family: headline;
+    text-align: center;
+  }
+  
+p {
+    font-family: ntext;
+    font-size: 20px;
+  }
+
+#body-center {
+    border-radius: 0px;
+    margin-top: -1%;
+    margin-left: 25%;
+    margin-right: 3%;
+    background-color: rgb(255, 255, 255);
+    padding: 5%;
+    height: 60%;
+}
+
+#btn-login {
+  border-radius: 5px;
+  background-color: rgb(105, 195, 255);
+  width: 15%;
+  height: 6%;
+}
+
+#input-text {
+  border-radius: 15px;
+  width: 30%;
+  height: 10%;
+  padding: 1%;
+}
+
+#input-pwd {
+  border-radius: 15px;
+  width: 30%;
+  height: 10%;
+  padding: 1%;
+}
+
+a {
+  color: rgb(105, 195, 255);
+  text-decoration: none;
+}
