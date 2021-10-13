@@ -35,6 +35,17 @@ class Post extends DbObject
         }
     }
 
+    public static function checkUpdate($selected)
+    {
+        global $db;
+        if (isset($_POST['update'])) {
+            $selected->title = $db->escapeString($_POST['title']);
+            $selected->context = $db->escapeString($_POST['context']);
+            $selected->save();
+            echo "The post edited successfully";
+        }
+    }
+
     public static function checkDelete()
     {
         global $db;

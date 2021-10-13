@@ -43,6 +43,22 @@ class User extends DbObject
         }
     }
 
+    public static function checkPassword($logged)
+    {
+        if (isset($_POST['changePass'])) {
+            global $db;
+            $oldPass = hash('sha256', $db->escapeString($_POST['oldPass']));
+            $newPass = hash('sha256', $db->escapeString($_POST['newPass']));
+            if ($oldPass === $logged->password) {
+                $logged->password = $newPass;
+                $logged->save();
+                echo "<p class='text-success'>Password changed</p>";
+            } else {
+                echo "<p class='text-danger'>Your current password doesnt match.</p>";
+            }
+        }
+    }
+
     public static function checkRegister()
     {
         if (isset($_POST['register'])) {
@@ -58,9 +74,9 @@ class User extends DbObject
                 $newUser->password = $password;
                 $newUser->email = $email;
                 $newUser->create();
-                echo 'User registered.';
+                echo "<p class='text-success'>New user has been registered successfully.</p>";
             } else {
-                echo 'There is already a user with this information.';
+                echo "<p class='text-danger'>There is already a user with the same username.</p>";
             }
         }
     }
@@ -68,11 +84,11 @@ class User extends DbObject
     public static function checkSession(){
         if (!isset($_SESSION['id'])) {
             if (basename($_SERVER['PHP_SELF']) != 'login.php') {
-                header('Location: login');
+                header('Location: http://localhost/blog/admin/login');
             }
         } else {
             if (basename($_SERVER['PHP_SELF']) == 'login.php') {
-                header('Location: ../admin');
+                header('Location: http://localhost/blog/admin');
             }
             $logged = User::findByID($_SESSION['id']);
             return $logged;
@@ -82,7 +98,7 @@ class User extends DbObject
     public static function logOut(){
         if (isset($_SESSION['id'])) {
             session_destroy();
-            header('Location: login');
+            header('Location: http://localhost/blog/admin/login');
         }
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 require_once '../includes/init.php';
+$URL = "admin/";
+$TITLE = 'Edit Post';
 session_start();
 $logged = User::checkSession();
 
@@ -15,26 +17,25 @@ if (!empty($_GET['q'])) {
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>Admin | Blog</title>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <script src="../../css/bootstrap.js"></script>
-    <script src="../../css/script.js" defer></script>
-</head>
+<?php include 'includes/header.php'; ?>
 <body>
 <?php include 'includes/navbar.php'; ?>
 <center>
 <div id="formDiv" style="padding: 5px; margin: 5px;">
-    <form id="deletepost" action="" method="POST">
+<form id="update" action="" method="POST">
         <div class="form-group container-md">
-            <label class="col-form-label mt-4" for="posttitle">Post ID</label>
-            <input type="number" class="form-control" placeholder="Example: 35" id="postid" name="postid" required>
+            <label class="col-form-label mt-4" for="title">Title</label>
+            <input type="text" class="form-control" placeholder="Example title" id="title" name="title" value="<?php echo $selected->title; ?>" required>
+        </div>
+        <div class="form-group container-md">
+            <label for="exampleTextarea" class="form-label mt-4">Context</label>
+            <textarea style="height: 20em" class="form-control" name="context" rows="3" required><?php echo $selected->context; ?></textarea>
         </div>
         <br>
-        <button type="submit" id="deletepost" name="deletepost" style="margin:5px;"
-                class="btn btn-outline-danger">Delete</button>
+        <button type="submit" id="update" name="update" style="margin:5px;"
+                class="btn btn-outline-success">Update</button>
     </form>
-    <?php Post::checkDelete(); ?>
+    <?php Post::checkUpdate($selected); ?>
 </div>
 </body>
 </html>

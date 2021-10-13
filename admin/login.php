@@ -4,19 +4,18 @@ require_once '../includes/init.php';
 session_start();
 User::checkSession();
 
+$URL = 'admin/';
+$HOME = False;
+$TITLE = 'Login';
+
 ?>
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>Admin Login | Blog</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../css/bootstrap.js"></script>
-    <script src="../css/script.js" defer></script>
-</head>
+<?php include '../includes/header.php'; ?>
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php include '../includes/navbar.php'; ?>
 <center>
 <div style="padding: 5px; margin: 5px;">
     <form id="login" action="" method="POST">

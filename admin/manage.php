@@ -3,19 +3,17 @@
 require_once '../includes/init.php';
 session_start();
 $logged = User::checkSession();
+
+$HOME = false;
+$TITLE = 'Manage Post';
 ?>
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>Admin | Blog</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../css/bootstrap.js"></script>
-    <script src="../css/script.js" defer></script>
-</head>
+<?php include '../includes/header.php'; ?>
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php include '../includes/navbar.php'; ?>
 <center>
 <div id="formDiv" style="padding: 5px; margin: 5px;">
     <form id="deletepost" action="" method="POST">

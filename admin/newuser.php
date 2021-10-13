@@ -3,19 +3,16 @@
 require_once '../includes/init.php';
 session_start();
 $logged = User::checkSession();
-?>
 
+$HOME = false;
+$TITLE = 'Register';
+?>
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>Admin | Blog</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../css/bootstrap.js"></script>
-    <script src="../css/script.js" defer></script>
-</head>
+<?php include '../includes/header.php'; ?>
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php include '../includes/navbar.php'; ?>
 <center>
 <div style="padding: 5px; margin: 5px;">
     <form id="register" action="" method="POST">
@@ -32,7 +29,7 @@ $logged = User::checkSession();
             <button type="submit" id="register" name="register" style="margin:5px;"
             class="btn btn-outline-primary">Register</button>
     </form>
-    <p class='text-danger'><?php echo User::checkRegister(); ?></p>
+    <?php echo User::checkRegister(); ?>
 </div>
 </body>
 </html>
