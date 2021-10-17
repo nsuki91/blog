@@ -1,25 +1,26 @@
 <?php
 
-require_once '../includes/init.php';
-$URL = "admin/";
+namespace nsuki;
+
+require_once '/home/nsukotss/public_html/includes/init.php';
 $TITLE = 'Edit Post';
 session_start();
 $logged = User::checkSession();
 
 if (!empty($_GET['q'])) {
     $postid = $_GET['q'];
-    !empty(Post::findByID($postid)) ? $selected = Post::findByID($postid) : header('Location: ../');
+    !empty(Post::findByID($postid)) ? $selected = Post::findByID($postid) : header('Location: /');
 } else {
-    header('Location: ../');
+    header('Location: /');
 }
 ?>
 
 <!DOCTYPE html>
 
 <html>
-<?php include 'includes/header.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/header.php'; ?>
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/navbar.php'; ?>
 <center>
 <div id="formDiv" style="padding: 5px; margin: 5px;">
 <form id="update" action="" method="POST">

@@ -1,10 +1,13 @@
 <?php
 
-require_once '../includes/init.php';
+namespace nsuki;
+
+require_once '/home/nsukotss/public_html/includes/init.php';
 session_start();
 User::checkSession();
 
 $URL = 'admin/';
+$CSS = '../';
 $HOME = False;
 $TITLE = 'Login';
 
@@ -13,9 +16,9 @@ $TITLE = 'Login';
 <!DOCTYPE html>
 
 <html>
-<?php include '../includes/header.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/header.php'; ?>
 <body>
-<?php include '../includes/navbar.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/navbar.php'; ?>
 <center>
 <div style="padding: 5px; margin: 5px;">
     <form id="login" action="" method="POST">
@@ -25,6 +28,7 @@ $TITLE = 'Login';
         <label class="col-form-label mt-4">Password</label>
         <input style="width: 25em;" id="password" name="password" type="password"
             class="form-control" placeholder="Password" required>
+        <label class="col-form-label mt-4"><a href='reset'>Can't you remember your password?</a></label>
         <br>
             <button type="submit" id="login" name="login" style="margin:5px;"
             class="btn btn-outline-primary">Save</button>

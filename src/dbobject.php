@@ -1,5 +1,7 @@
 <?php
 
+namespace nsuki;
+
 abstract class DbObject
 {
     protected static $db_table;
@@ -11,7 +13,6 @@ abstract class DbObject
 
     public static function findByID($userID)
     {
-        global $db;
         $theResultArray = self::findByQuery("SELECT * FROM " . static::$db_table . " WHERE id=$userID LIMIT 1");
 
         return !empty($theResultArray) ? array_shift($theResultArray) : false;

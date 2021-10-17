@@ -1,6 +1,9 @@
 <?php
 
-require_once 'includes/init.php';
+namespace nsuki;
+
+require_once('/home/nsukotss/public_html/includes/init.php');
+
 session_start();
 $logged = User::checkSession();
 
@@ -11,7 +14,6 @@ if (!empty($_GET['q'])) {
     header('Location: ../');
 }
 
-$URL = 'admin/';
 $TITLE = $selected->title;
 $HOME = True;
 ?>
@@ -19,10 +21,10 @@ $HOME = True;
 <!DOCTYPE html>
 
 <html>
-<?php include 'includes/header.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/header.php'; ?>
 
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/navbar.php'; ?>
 
 <br>
 <div class="container">

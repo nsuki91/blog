@@ -1,9 +1,12 @@
 <?php
 
-require_once '../includes/init.php';
+namespace nsuki;
+
+require_once '/home/nsukotss/public_html/includes/init.php';
 session_start();
 $logged = User::checkSession();
 
+$CSS = '../';
 $HOME = false;
 $TITLE = 'Add post';
 ?>
@@ -11,9 +14,9 @@ $TITLE = 'Add post';
 <!DOCTYPE html>
 
 <html>
-<?php include '../includes/header.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/header.php'; ?>
 <body>
-<?php include '../includes/navbar.php'; ?>
+<?php include '/home/nsukotss/public_html/includes/navbar.php'; ?>
 <center>
 <div id="formDiv">
     <form id="newpost" action="" method="POST">

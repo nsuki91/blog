@@ -1,5 +1,7 @@
 <?php
 
+namespace nsuki;
+
 class Post extends DbObject
 {
     protected static $db_table = "posts";

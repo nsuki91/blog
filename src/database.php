@@ -1,6 +1,8 @@
 <?php
 
-require_once 'config.php';
+namespace nsuki;
+
+require_once __ROOT__.'/src/config.php';
 
 class Database
 {
@@ -13,7 +15,7 @@ class Database
 
     public function connectDb()
     {
-        $this->connection = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        $this->connection = new \mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
         if($this->connection->connect_errno) {
             die("Connection failed" . $this->connection->connect_error);

@@ -1,9 +1,12 @@
 <?php
 
+namespace nsuki;
+
 class User extends DbObject
 {
     protected static $db_table = "users";
     protected static $db_table_fields = array('username', 'password', 'email');
+    protected static $whitelist = array('//index.php', '//post.php', '/admin/login.php');
     public $id;
     public $username;
     public $password;
@@ -36,7 +39,7 @@ class User extends DbObject
                 $newUser = User::inst($result);
                 $_SESSION['id'] = $newUser->id;
                 echo $_SESSION['id'];
-                header('Location: ../admin');
+                header('Location: ../admin/');
             } else {
                 echo 'This information does not match with a user.';
             }
@@ -55,6 +58,24 @@ class User extends DbObject
                 echo "<p class='text-success'>Password changed</p>";
             } else {
                 echo "<p class='text-danger'>Your current password doesnt match.</p>";
+            }
+        }
+    }
+
+    public static function checkRecovery($logged, $hash)
+    {
+        if (isset($_POST['recovery'])) {
+            global $db;
+            $pass1 = hash('sha256', $db->escapeString($_POST['pass1']));
+            $pass2 = hash('sha256', $db->escapeString($_POST['pass2']));
+            if ($pass1 === $pass2) {
+                $logged->password = $pass1;
+                $logged->save();
+                echo "<p class='text-success'>Password changed.</p>";
+                header('Location: ../../admin/');
+                $hash->delete();
+            } else {
+                echo "<p class='text-danger'>Passwords don't match.</p>";
             }
         }
     }
@@ -82,14 +103,12 @@ class User extends DbObject
     }
 
     public static function checkSession(){
+        $path = dirname($_SERVER['PHP_SELF']) . '/' . basename($_SERVER['PHP_SELF']);
         if (!isset($_SESSION['id'])) {
-            if (basename($_SERVER['PHP_SELF']) != 'login.php') {
-                header('Location: http://localhost/blog/admin/login');
+            if (!in_array($path, Self::$whitelist)) {
+                header('Location: ../admin/login');
             }
         } else {
-            if (basename($_SERVER['PHP_SELF']) == 'login.php') {
-                header('Location: http://localhost/blog/admin');
-            }
             $logged = User::findByID($_SESSION['id']);
             return $logged;
         }
@@ -98,7 +117,7 @@ class User extends DbObject
     public static function logOut(){
         if (isset($_SESSION['id'])) {
             session_destroy();
-            header('Location: http://localhost/blog/admin/login');
+            header('Location: ../admin/login');
         }
     }
 }
